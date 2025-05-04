@@ -1,0 +1,25 @@
+/* For most modern browsers */
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* For Firefox */
+html {
+  scrollbar-width: none; /* hide scrollbar */
+  -ms-overflow-style: none; /* for Internet Explorer and Edge */
+  background-color: white;
+}
+
+
+  body{
+    background-color: white;
+    overflow-x: hidden;
+  }
+  
+
+  .outline-text {
+    color: transparent;
+    -webkit-text-stroke: 1px black; /* Outline only */
+  }
+  
