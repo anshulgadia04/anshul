@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, time } from 'framer-motion';
-import qrcode from '../assets/qrcode.png';
+import qrcode from '../assets/qrcode.svg';
 import emailjs from '@emailjs/browser';
 
 const containerVariants = {

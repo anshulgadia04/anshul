@@ -714,16 +714,16 @@ const Hero = () => {
           </nav>
 
           <div className="flex space-x-4 flex-wrap">
-            <a className="bg-white/10 hover:bg-white/20 p-2 rounded-md hover:cursor-pointer">
+            <a href="https://www.instagram.com/jain___anshulll?igsh=MXB1cXI0MTZtMDZtNQ%3D%3D&utm_source=qr" target="_blank" className="bg-white/10 hover:bg-white/20 p-2 rounded-md hover:cursor-pointer">
               <FaInstagram className="text-2xl" />
             </a>
-            <a className="bg-white/10 hover:bg-white/20 p-2 rounded-md hover:cursor-pointer">
+            <a href="http://linkedin.com/in/anshulgadia04" target="_blank" className="bg-white/10 hover:bg-white/20 p-2 rounded-md hover:cursor-pointer">
               <FaLinkedinIn className="text-2xl" />
             </a>
-            <a className="bg-white/10 hover:bg-white/20 p-2 rounded-md hover:cursor-pointer">
+            <a href="https://github.com/anshulgadia04" target="_blank" className="bg-white/10 hover:bg-white/20 p-2 rounded-md hover:cursor-pointer">
               <FaGithub className="text-2xl" />
             </a>
-            <a className="bg-white/10 hover:bg-white/20 p-2 rounded-md hover:cursor-pointer">
+            <a href="https://leetcode.com/u/anshulgadia04/" target="_blank" className="bg-white/10 hover:bg-white/20 p-2 rounded-md hover:cursor-pointer">
               <SiLeetcode className="text-2xl" />
             </a>
           </div>
@@ -731,7 +731,7 @@ const Hero = () => {
           {/* Bottom Bar */}
           <div className="w-full border-t border-gray-500 pt-4 flex flex-wrap justify-between text-xs text-gray-300">
             <span>Design by Anshul Gadia</span>
-            <span>© 2025 www.designbysaad.com</span>
+            <span>© 2025 https://anshul-gadia.vercel.app/</span>
           </div>
         </div>
       </footer>
