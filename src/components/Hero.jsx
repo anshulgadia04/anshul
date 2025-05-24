@@ -528,13 +528,13 @@ const Hero = () => {
 
         {/* row1 */}
         <div className="flex flex-col justify-center items-center w-full mt-10 md:p-5 mb-5">
-          <div className="flex flex-row justify-center items-center flex-wrap gap-14">
+        <div className="grid grid-cols-2 md:flex md:flex-row justify-center items-center md:flex-wrap md:gap-14 gap-8 w-[90%] md:w-full">
             <MagneticEffect>
               <div className="flex flex-row justify-center items-center gap-2 cursor-default">
-                <img width={50} height={50} src={reactSvg} />
+                <img className="md:w-[50px] w-[35px] md:h-[50px] h-[35px]" src={reactSvg} />
                 <p
                   style={{ fontFamily: "Big Shoulders, sans-serif" }}
-                  className="text-3xl font-bold"
+                  className="md:text-3xl text-xl font-bold"
                 >
                   React
                 </p>
@@ -545,11 +545,10 @@ const Hero = () => {
               <div className="flex flex-row justify-center items-center gap-2">
                 <img
                   style={{ fontFamily: "Big Shoulders, sans-serif" }}
-                  width={50}
-                  height={50}
+                  className="md:w-[50px] w-[35px] md:h-[50px] h-[35px]"
                   src={nextSvg}
                 />
-                <p className="text-3xl font-bold">Next</p>
+                <p className="md:text-3xl text-xl font-bold">Next</p>
               </div>
             </MagneticEffect>
 
@@ -557,11 +556,10 @@ const Hero = () => {
               <div className="flex flex-row justify-center items-center gap-2">
                 <img
                   style={{ fontFamily: "Big Shoulders, sans-serif" }}
-                  width={50}
-                  height={50}
+                  className="md:w-[50px] w-[35px] md:h-[50px] h-[35px]"
                   src={gsapSvg}
                 />
-                <p className="text-3xl font-bold">GSAP</p>
+                <p className="md:text-3xl text-xl font-bold">GSAP</p>
               </div>
             </MagneticEffect>
 
@@ -569,11 +567,10 @@ const Hero = () => {
               <div className="flex flex-row justify-center items-center gap-2">
                 <img
                   style={{ fontFamily: "Big Shoulders, sans-serif" }}
-                  width={50}
-                  height={50}
+                  className="md:w-[50px] w-[35px] md:h-[50px] h-[35px]"
                   src={framerSvg}
                 />
-                <p className="text-3xl font-bold">Framer Motion</p>
+                <p className="md:text-3xl text-xl font-bold">Framer Motion</p>
               </div>
             </MagneticEffect>
 
@@ -581,11 +578,10 @@ const Hero = () => {
               <div className="flex flex-row justify-center items-center gap-2">
                 <img
                   style={{ fontFamily: "Big Shoulders, sans-serif" }}
-                  width={50}
-                  height={50}
+                  className="md:w-[50px] w-[35px] md:h-[50px] h-[35px]"
                   src={nodejsSvg}
                 />
-                <p className="text-3xl font-bold">Nodejs</p>
+                <p className="md:text-3xl text-xl font-bold">Nodejs</p>
               </div>
             </MagneticEffect>
 
@@ -593,11 +589,10 @@ const Hero = () => {
               <div className="flex flex-row justify-center items-center gap-2">
                 <img
                   style={{ fontFamily: "Big Shoulders, sans-serif" }}
-                  width={50}
-                  height={50}
+                  className="md:w-[50px] w-[35px] md:h-[50px] h-[35px]"
                   src={threejsSvg}
                 />
-                <p className="text-3xl font-bold">Threejs</p>
+                <p className="md:text-3xl text-xl font-bold">Threejs</p>
               </div>
             </MagneticEffect>
           </div>
@@ -605,16 +600,15 @@ const Hero = () => {
 
         {/* row2 */}
         <div className="flex flex-col justify-center items-center w-full p-5 mb-5">
-          <div className="flex flex-row justify-center items-center flex-wrap gap-14">
+          <div className="grid grid-cols-2 md:flex md:flex-row justify-center items-center md:flex-wrap md:gap-14 gap-8 w-[90%] md:w-full">
             <MagneticEffect>
               <div className="flex flex-row justify-center items-center gap-2">
                 <img
                   style={{ fontFamily: "Big Shoulders, sans-serif" }}
-                  width={50}
-                  height={50}
+                  className="md:w-[50px] w-[35px] md:h-[50px] h-[35px]"
                   src={javaSvg}
                 />
-                <p className="text-3xl font-bold">Java</p>
+                <p className="md:text-3xl text-xl font-bold">Java</p>
               </div>
             </MagneticEffect>
 
@@ -622,11 +616,10 @@ const Hero = () => {
               <div className="flex flex-row justify-center items-center gap-2">
                 <img
                   style={{ fontFamily: "Big Shoulders, sans-serif" }}
-                  width={50}
-                  height={50}
+                  className="md:w-[50px] w-[35px] md:h-[50px] h-[35px]"
                   src={cppSvg}
                 />
-                <p className="text-3xl font-bold">C++</p>
+                <p className="md:text-3xl text-xl font-bold">C++</p>
               </div>
             </MagneticEffect>
 
@@ -634,11 +627,10 @@ const Hero = () => {
               <div className="flex flex-row justify-center items-center gap-2">
                 <img
                   style={{ fontFamily: "Big Shoulders, sans-serif" }}
-                  width={50}
-                  height={50}
+                  className="md:w-[50px] w-[35px] md:h-[50px] h-[35px]"
                   src={jsSvg}
                 />
-                <p className="text-3xl font-bold">JavaScript</p>
+                <p className="md:text-3xl text-xl font-bold">JavaScript</p>
               </div>
             </MagneticEffect>
 
@@ -646,11 +638,10 @@ const Hero = () => {
               <div className="flex flex-row justify-center items-center gap-2">
                 <img
                   style={{ fontFamily: "Big Shoulders, sans-serif" }}
-                  width={50}
-                  height={50}
+                  className="md:w-[50px] w-[35px] md:h-[50px] h-[35px]"
                   src={tsSvg}
                 />
-                <p className="text-3xl font-bold">TypeScript</p>
+                <p className="md:text-3xl text-xl font-bold">TypeScript</p>
               </div>
             </MagneticEffect>
 
@@ -658,11 +649,10 @@ const Hero = () => {
               <div className="flex flex-row justify-center items-center gap-2">
                 <img
                   style={{ fontFamily: "Big Shoulders, sans-serif" }}
-                  width={50}
-                  height={50}
+                  className="md:w-[50px] w-[35px] md:h-[50px] h-[35px]"
                   src={pythonSvg}
                 />
-                <p className="text-3xl font-bold">Python</p>
+                <p className="md:text-3xl text-xl font-bold">Python</p>
               </div>
             </MagneticEffect>
 
@@ -670,11 +660,10 @@ const Hero = () => {
               <div className="flex flex-row justify-center items-center gap-2">
                 <img
                   style={{ fontFamily: "Big Shoulders, sans-serif" }}
-                  width={50}
-                  height={50}
+                  className="md:w-[50px] w-[35px] md:h-[50px] h-[35px]"
                   src={tailwindSvg}
                 />
-                <p className="text-3xl font-bold">Tailwind</p>
+                <p className="md:text-3xl text-xl font-bold">Tailwind</p>
               </div>
             </MagneticEffect>
           </div>
@@ -682,16 +671,15 @@ const Hero = () => {
 
         {/* row3 */}
         <div className="flex flex-col justify-center items-center w-full p-5">
-          <div className="flex flex-row justify-center items-center flex-wrap gap-14">
+          <div className="grid grid-cols-2 md:flex md:flex-row justify-center items-center md:flex-wrap md:gap-14 gap-8 w-[90%] md:w-full">
             <MagneticEffect>
               <div className="flex flex-row justify-center items-center gap-2">
                 <img
                   style={{ fontFamily: "Big Shoulders, sans-serif" }}
-                  width={50}
-                  height={50}
+                  className="md:w-[50px] w-[35px] md:h-[50px] h-[35px]"
                   src={mongoSvg}
                 />
-                <p className="text-3xl font-bold">MongoDB</p>
+                <p className="md:text-3xl text-xl font-bold">MongoDB</p>
               </div>
             </MagneticEffect>
 
@@ -699,11 +687,10 @@ const Hero = () => {
               <div className="flex flex-row justify-center items-center gap-2">
                 <img
                   style={{ fontFamily: "Big Shoulders, sans-serif" }}
-                  width={50}
-                  height={50}
+                  className="md:w-[50px] w-[35px] md:h-[50px] h-[35px]"
                   src={mysqlSvg}
                 />
-                <p className="text-3xl font-bold">MySQL</p>
+                <p className="md:text-3xl text-xl font-bold">MySQL</p>
               </div>
             </MagneticEffect>
 
@@ -711,11 +698,10 @@ const Hero = () => {
               <div className="flex flex-row justify-center items-center gap-2">
                 <img
                   style={{ fontFamily: "Big Shoulders, sans-serif" }}
-                  width={50}
-                  height={50}
+                  className="md:w-[50px] w-[35px] md:h-[50px] h-[35px]"
                   src={gitSvg}
                 />
-                <p className="text-3xl font-bold">Git</p>
+                <p className="md:text-3xl text-xl font-bold">Git</p>
               </div>
             </MagneticEffect>
 
@@ -723,11 +709,10 @@ const Hero = () => {
               <div className="flex flex-row justify-center items-center gap-2">
                 <img
                   style={{ fontFamily: "Big Shoulders, sans-serif" }}
-                  width={50}
-                  height={50}
+                  className="md:w-[50px] w-[35px] md:h-[50px] h-[35px]"
                   src={githubSvg}
                 />
-                <p className="text-3xl font-bold">GitHub</p>
+                <p className="md:text-3xl text-xl font-bold">GitHub</p>
               </div>
             </MagneticEffect>
 
@@ -735,11 +720,10 @@ const Hero = () => {
               <div className="flex flex-row justify-center items-center gap-2">
                 <img
                   style={{ fontFamily: "Big Shoulders, sans-serif" }}
-                  width={50}
-                  height={50}
+                  className="md:w-[50px] w-[35px] md:h-[50px] h-[35px]"
                   src={vscodeSvg}
                 />
-                <p className="text-3xl font-bold">VSCode</p>
+                <p className="md:text-3xl text-xl font-bold">VSCode</p>
               </div>
             </MagneticEffect>
 
@@ -747,11 +731,10 @@ const Hero = () => {
               <div className="flex flex-row justify-center items-center gap-2">
                 <img
                   style={{ fontFamily: "Big Shoulders, sans-serif" }}
-                  width={50}
-                  height={50}
+                  className="md:w-[50px] w-[35px] md:h-[50px] h-[35px]"
                   src={figmaSvg}
                 />
-                <p className="text-3xl font-bold">Figma</p>
+                <p className="md:text-3xl text-xl font-bold">Figma</p>
               </div>
             </MagneticEffect>
           </div>

@@ -116,19 +116,19 @@ const Contact = () => {
       whileInView="visible"
       viewport={{ once: false }}
       variants={containerVariants}
-      className="flex flex-col items-center justify-between p-10 md:p-10 gap-12 bg-white text-black"
+      className="flex flex-col items-center justify-between p-4 sm:p-6 md:p-10 gap-12 bg-white text-black"
     >
       <motion.h2
         variants={itemVariants}
         style={{ fontFamily: 'Big Shoulders , sans-serif' }}
-        className="text-[7rem] w-full font-bold self-start tracking-wide text-center"
+        className="text-[2.5rem] sm:text-[4rem] md:text-[7rem] w-full font-bold self-start tracking-wide text-center"
       >
         Get In Touch
       </motion.h2>
 
       <form 
       onSubmit={handleSubmit}
-      className="flex flex-row justify-center flex-wrap items-center w-full px-36">
+      className="flex flex-row justify-center flex-wrap items-center w-full px-4 sm:px-8 md:px-16 lg:px-36">
 
         {/* Left Side */}
         <motion.div
@@ -137,17 +137,17 @@ const Contact = () => {
         >
           <h2
             style={{ fontFamily: 'Big Shoulders , sans-serif' }}
-            className="text-[5.5rem] font-bold"
+            className="text-[2rem] sm:text-[3.5rem] md:text-[5.5rem] font-bold"
           >
             Email
           </h2>
           <p
             style={{ fontFamily: 'Lexend , sans-serif' }}
-            className="text-[1.75rem]"
+            className="text-[1rem] sm:text-[1.25rem] md:text-[1.75rem]"
           >
             anshulgadia04@gmail.com
           </p>
-          <div className="w-1/2 mt-14">
+          <div className="w-full sm:w-3/4 md:w-1/2 mt-8 md:mt-14">
             <img src={qrcode} alt="QR Code" />
           </div>
         </motion.div>
@@ -156,11 +156,11 @@ const Contact = () => {
         <motion.div
           variants={itemVariants}
           style={{ fontFamily: 'Inter, sans-serif' }}
-          className="w-full md:w-1/2 bg-white px-16 py-5 rounded-lg space-y-4"
+          className="w-full md:w-1/2 bg-white px-4 sm:px-8 md:px-16 py-5 rounded-lg space-y-4"
         >
           <motion.h2
             variants={itemVariants}
-            className="text-[2rem] font-semibold text-[#061C3D]"
+            className="text-[1.5rem] sm:text-[1.75rem] md:text-[2rem] font-semibold text-[#061C3D]"
           >
             Write down your quote here...
           </motion.h2>
