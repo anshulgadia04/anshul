@@ -419,7 +419,7 @@ const Hero = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="md:text-[7rem] font-bold self-start tracking-wide"
+            className="md:text-[7rem] text-5xl md:mb-0 mb-5 font-bold self-start tracking-wide"
           >
             About Me
           </motion.h2>
