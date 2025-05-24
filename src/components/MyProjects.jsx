@@ -13,12 +13,7 @@ const MyProjects = () => {
   const prj3Ref = useRef(null);
   const prj4Ref = useRef(null);
 
-  useLayoutEffect(() => {
-    
 
-
-    
-  },[])
     const { scrollYProgress: prj2Scroll } = useScroll({ target: prj2Ref, offset: ["start 75%", "start start"] });
     const prj1Scale = useTransform(prj2Scroll, [0, 1], [1,.8]);
 
@@ -115,26 +110,26 @@ const MyProjects = () => {
 
 
     return (
-    <section className="h-[400vh] bg-[#5C5C5C] text-white relative flex gap-0 flex-col">
+    <section className="md:h-[400vh] h-[450vh] bg-[#5C5C5C] text-white relative flex gap-0 flex-col">
 
         <h2 style={{ fontFamily: "Big Shoulders , sans-serif" }}
         className="text-[6rem] w-full relative text-white pt-10 top-0 left-0 font-bold self-start tracking-wider text-center z-[0]">Projects</h2>
 
 
         {/* prj 1 */}
-        <motion.section style={{scale : prj1Scale}} ref={prj1Ref} className="w-full h-[75vh] sticky top-0 left-0 flex items-center justify-center px-8 z-10">
-        <div className="w-full max-w-7xl flex flex-col md:flex-row items-center justify-between gap-12">
+        <motion.section style={{scale : prj1Scale}} ref={prj1Ref} className="w-full h-[100vh] md:h[75vh] sticky top-0 left-0 flex items-center justify-center px-8 z-10">
+        <div className="w-full max-w-7xl flex flex-col md:flex-row items-center justify-between gap-12 md:py-0 py-16">
             
             <div className="w-full md:w-1/2 flex flex-col justify-center">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4" style={{ fontFamily: 'Big Shoulders, sans-serif' }}>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 md:pt-0" style={{ fontFamily: 'Big Shoulders, sans-serif' }}>
                 ResuFlex – AI-Powered Resume Builder
             </h2>
-            <p className="text-lg text-white mb-6 leading-relaxed" style={{ fontFamily: 'Lexend, sans-serif' }}>
+            <p className="md:text-lg text-white md:mb-6 mb-3 md:leading-relaxed leading-snug" style={{ fontFamily: 'Lexend, sans-serif' }}>
                 A smart resume builder powered by Gemini API that lets users generate, customize, and download resumes in PDF format.
                 It combines beautiful UI with intelligent content generation to create a seamless experience.
             </p>
 
-            <ul className="list-disc pl-5 text-white space-y-2 text-base">
+            <ul className="list-disc pl-5 text-white space-y-2 md:text-base text-xs">
                 <li>Dynamic resume generation using Gemini API</li>
                 <li>Customizable templates with Tailwind CSS</li>
                 <li>Smooth interface built with Next.js</li>
@@ -148,7 +143,7 @@ const MyProjects = () => {
               variants={imageVariantsToLeft}
               initial="hidden"
               animate={prj1InView ? "visible" : "hidden"}
-              src={projects[0].image}
+              src={resuflexImg}
               alt="ResuFlex Project Screenshot"
               className="object-cover"
             />
@@ -160,7 +155,7 @@ const MyProjects = () => {
 
         {/* prj 2 */}
         <motion.section style={{scale : prj2Scale}} ref={prj2Ref} className="w-full h-screen sticky top-0 left-0 bg-[#4b4a4a] flex items-center justify-center px-8 z-10">
-        <div className="w-full max-w-7xl flex flex-col md:flex-row items-center justify-between gap-12">
+        <div className="w-full max-w-7xl flex flex-col md:flex-row items-center justify-between gap-12 md:py-0 py-16">
 
             {/* Image Section */}
             <div className="w-full md:w-1/2">
@@ -170,19 +165,19 @@ const MyProjects = () => {
               animate={prj2InView ? "visible" : "hidden"}
               src={tripImg}
               alt="ResuFlex Project Screenshot"
-              className="object-cover"
+              className="object-cover order-last md:order-first"
             />
             </div>
             
-            <div className="w-full md:w-1/2 flex flex-col justify-center">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4" style={{ fontFamily: 'Big Shoulders, sans-serif' }}>
+            <div className="w-full md:w-1/2 flex flex-col justify-center order-first md:order-last">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 md:pt-0" style={{ fontFamily: 'Big Shoulders, sans-serif' }}>
             AI Trip Planner – Personalized Itinerary Generator
             </h2>
-            <p className="text-lg text-white mb-6 leading-relaxed" style={{ fontFamily: 'Lexend, sans-serif' }}>
+            <p className="md:text-lg text-white md:mb-6 mb-3 md:leading-relaxed leading-snug" style={{ fontFamily: 'Lexend, sans-serif' }}>
             Built a full-stack travel assistant that delivers AI-powered itineraries based on user preferences. Real-time travel data is stored in MongoDB while UI interactions are powered by GSAP and Framer Motion for a modern experience.
             </p>
 
-            <ul className="list-disc pl-5 text-white space-y-2 text-base">
+            <ul className="list-disc pl-5 text-white space-y-2 md:text-base text-xs">
                 <li>Personalized trips via Gemini API</li>
                 <li>User preference capture and MongoDB storage</li>
                 <li>Animations using GSAP and Framer Motion</li>
@@ -194,18 +189,18 @@ const MyProjects = () => {
 
 
         {/* prj 3 */}
-        <motion.section style={{scale : prj3Scale}} ref={prj3Ref} className="w-full h-screen sticky top-0 left-0 bg-[#5C5C5C] flex items-center justify-center px-8 z-10">
-        <div className="w-full max-w-7xl flex flex-col md:flex-row items-center justify-between gap-12">
+        <motion.section style={{scale : prj3Scale}} ref={prj3Ref} className="w-full h-screen sticky top-0 left-0 bg-[#4b4a4a] flex items-center justify-center px-8 z-10">
+        <div className="w-full max-w-7xl flex flex-col md:flex-row items-center justify-between gap-12 md:py-0 py-16">
             
             <div className="w-full md:w-1/2 flex flex-col justify-center">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4" style={{ fontFamily: 'Big Shoulders, sans-serif' }}>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 md:pt-0" style={{ fontFamily: 'Big Shoulders, sans-serif' }}>
             Rabbit – Full-Stack E-Commerce Site
             </h2>
-            <p className="text-lg text-white mb-6 leading-relaxed" style={{ fontFamily: 'Lexend, sans-serif' }}>
+            <p className="md:text-lg text-white md:mb-6 mb-3 md:leading-relaxed leading-snug" style={{ fontFamily: 'Lexend, sans-serif' }}>
             A feature-rich e-commerce platform with user authentication, product management, and PayPal integration. Includes a fully functional admin panel and smooth UI built using Tailwind CSS.
             </p>
 
-            <ul className="list-disc pl-5 text-white space-y-2 text-base">
+            <ul className="list-disc pl-5 text-white space-y-2 md:text-base text-xs">
                 <li>Secure login system and admin panel</li>
                 <li>Shopping cart and real payment integration</li>
                 <li>Mongoose schema validation</li>
@@ -230,8 +225,8 @@ const MyProjects = () => {
           
           {/* prj 4 */}
   
-        <motion.section style={{scale : prj4Scale}} ref={prj4Ref} className="w-full h-screen sticky top-0 left-0 bg-[#4a4a4a] flex items-center justify-center px-8 z-10">
-        <div className="w-full max-w-7xl flex flex-col md:flex-row items-center justify-between gap-12">
+        <motion.section style={{scale : prj4Scale}} ref={prj4Ref} className="w-full h-screen sticky top-0 left-0 bg-[#4b4a4a] flex items-center justify-center px-8 z-10">
+        <div className="w-full max-w-7xl flex flex-col md:flex-row items-center justify-between gap-12 md:py-0 py-16">
 
             {/* Image Section */}
             <div className="w-full md:w-1/2">
@@ -241,19 +236,19 @@ const MyProjects = () => {
               animate={prj4InView ? "visible" : "hidden"}
               src={chronixImg}
               alt="ResuFlex Project Screenshot"
-              className="object-cover"
+              className="object-cover order-last md:order-first"
             />
             </div>
             
-            <div className="w-full md:w-1/2 flex flex-col justify-center">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4" style={{ fontFamily: 'Big Shoulders, sans-serif' }}>
+            <div className="w-full md:w-1/2 flex flex-col justify-center order-first md:order-last">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 md:pt-0" style={{ fontFamily: 'Big Shoulders, sans-serif' }}>
             Chronix – Premium Luxury Watch
             </h2>
-            <p className="text-lg text-white mb-6 leading-relaxed" style={{ fontFamily: 'Lexend, sans-serif' }}>
+            <p className="md:text-lg text-white md:mb-6 mb-3 md:leading-relaxed leading-snug" style={{ fontFamily: 'Lexend, sans-serif' }}>
             Chronix is a visually stunning, premium watch showcase website built with MERN stack. Designed to deliver an immersive experience, it features high-end animations using GSAP and Framer Motion, mimicking the elegance of luxury brands.
             </p>
 
-            <ul className="list-disc pl-5 text-white space-y-2 text-base">
+            <ul className="list-disc pl-5 text-white space-y-2 md:text-base text-xs">
                 <li>Elegant scroll-based animations with GSAP</li>
                 <li>Framer Motion used for fluid transitions and effects</li>
                 <li>Showcases high-quality watch imagery and design</li>

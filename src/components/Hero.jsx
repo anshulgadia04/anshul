@@ -22,7 +22,7 @@ import githubSvg from "../assets/skills/github.svg";
 import vscodeSvg from "../assets/skills/vscode.svg";
 import figmaSvg from "../assets/skills/figma.svg";
 import MagneticEffect from "./MagneticEffect";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import CountUp from "react-countup";
 import TrueFocus from "./TrueFocus";
 import MyProjects from "./MyProjects";
@@ -33,26 +33,13 @@ import { FaGithub } from "react-icons/fa";
 import { SiLeetcode } from "react-icons/si";
 
 const Hero = () => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+
   const [scale, setScale] = useState(1);
 
-  useEffect(() => {
-    const mouseMove = (e) => {
-      const x = e.clientX;
-      const y = e.clientY;
-
-      setPosition({ x, y });
-    };
-
-    window.addEventListener("mousemove", mouseMove);
-
-    return () => {
-      window.removeEventListener("mousemove", mouseMove);
-    };
-  }, []);
 
   const [reverse, setReverse] = useState(false);
   const [lastScrollTop, setLastScrollTop] = useState(0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const homeRef = useRef(null);
   const aboutRef = useRef(null);
@@ -62,7 +49,7 @@ const Hero = () => {
   const contactRef = useRef(null);
 
   const numbersRef = useRef(null);
-  const isInView = useInView(numbersRef, { once: false });
+  const isInView = useInView(numbersRef, { once: true , triggerOnce: true});
 
   const scrollToSection = (elementRef) => {
     elementRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -124,11 +111,76 @@ const Hero = () => {
     }),
   };
 
+  const menuVariants = {
+    hidden: {
+      x: "100%",
+      opacity: 0,
+      transition: { type: "tween", duration: 0.3 },
+    },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: { type: "tween", duration: 0.3 },
+    },
+    exit: {
+      x: "100%",
+      opacity: 0,
+      transition: { type: "tween", duration: 0.3 },
+    },
+  };
+
+  window.onclick = function (event) {
+    const menuButton = document.querySelector("button");
+    if (isMenuOpen && !menuButton.contains(event.target)) {
+      setIsMenuOpen(false);
+    }
+  }
+
+  const textVariant2 = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  };
+  
+
   return (
-    <div>
+    <div className="">
       <nav className="relative w-full bg-white overflow-hidden">
-        <div className="relative flex flex-row flex-nowrap justify-center items-center mx-auto px-10 py-8">
-          <ul className="flex flex-row gap-8 text-white mx-auto text-sm md:text-[1.125rem]">
+        <div className="relative flex flex-row flex-nowrap justify-between items-center mx-auto md:px-10 md:py-8 px-5 py-5">
+          {/* Logo/Brand - visible on both mobile and desktop */}
+          <div className="text-black font-semibold">AG</div>
+
+          {/* Mobile Menu Button - explicitly set width and visibility */}
+          <button
+            className="md:hidden text-black p-2 z-50 flex flex-col justify-center items-center"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <svg
+              className="w-8 h-8"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              {isMenuOpen ? (
+                <path d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
+
+          {/* Desktop Menu */}
+          <ul className="hidden md:flex flex-row gap-8 text-white mx-auto text-sm md:text-[1.125rem]">
             <li
               style={{ fontFamily: "Lexend, sans-serif" }}
               className="text-black cursor-pointer font-semibold"
@@ -138,80 +190,136 @@ const Hero = () => {
             <li
               onClick={() => scrollToSection(aboutRef)}
               style={{ fontFamily: "Lexend, sans-serif" }}
-              className="text-[#7E7E7E] cursor-pointer font-light"
+              className="text-[#5c5c5c] cursor-pointer font-light hover:text-black transition-colors"
             >
               About
             </li>
             <li
               onClick={() => scrollToSection(servicesRef)}
               style={{ fontFamily: "Lexend, sans-serif" }}
-              className="text-[#7E7E7E] cursor-pointer font-light"
+              className="text-[#5c5c5c] cursor-pointer font-light hover:text-black transition-colors"
             >
               Services
             </li>
             <li
               onClick={() => scrollToSection(projectRef)}
               style={{ fontFamily: "Lexend, sans-serif" }}
-              className="text-[#7E7E7E] cursor-pointer font-light"
+              className="text-[#5c5c5c] cursor-pointer font-light hover:text-black transition-colors"
             >
               Projects
             </li>
             <li
               onClick={() => scrollToSection(skillsRef)}
               style={{ fontFamily: "Lexend, sans-serif" }}
-              className="text-[#7E7E7E] cursor-pointer font-light"
+              className="text-[#5c5c5c] cursor-pointer font-light hover:text-black transition-colors"
             >
               Skills
             </li>
             <li
               onClick={() => scrollToSection(contactRef)}
               style={{ fontFamily: "Lexend, sans-serif" }}
-              className="text-[#7E7E7E] cursor-pointer font-light"
+              className="text-[#5c5c5c] cursor-pointer font-light hover:text-black transition-colors"
             >
               Contact
             </li>
           </ul>
+
+          {/* Mobile Menu - Full Screen Overlay */}
+          <AnimatePresence>
+            {isMenuOpen && (
+              <motion.div
+                variants={menuVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                className="fixed top-0 right-0 w-[65vw] h-full bg-[#5c5c5c] z-40 md:hidden overflow-hidden"
+              >
+                <div className="flex flex-col h-full justify-start mt-20 items-start">
+                  <ul className="flex flex-col items-start space-y-8 px-10">
+                    <li
+                      className="text-white text-2xl font-semibold"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      Home
+                    </li>
+                    <li
+                      className="text-white text-2xl hover:text-black transition-colors"
+                      onClick={() => {
+                        scrollToSection(aboutRef);
+                        setIsMenuOpen(false);
+                      }}
+                    >
+                      About
+                    </li>
+                    <li
+                      className="text-white text-2xl hover:text-black transition-colors"
+                      onClick={() => {
+                        scrollToSection(servicesRef);
+                        setIsMenuOpen(false);
+                      }}
+                    >
+                      Services
+                    </li>
+                    <li
+                      className="text-white text-2xl hover:text-black transition-colors"
+                      onClick={() => {
+                        scrollToSection(projectRef);
+                        setIsMenuOpen(false);
+                      }}
+                    >
+                      Projects
+                    </li>
+                    <li
+                      className="text-white text-2xl hover:text-black transition-colors"
+                      onClick={() => {
+                        scrollToSection(skillsRef);
+                        setIsMenuOpen(false);
+                      }}
+                    >
+                      Skills
+                    </li>
+                    <li
+                      className="text-white text-2xl hover:text-black transition-colors"
+                      onClick={() => {
+                        scrollToSection(contactRef);
+                        setIsMenuOpen(false);
+                      }}
+                    >
+                      Contact
+                    </li>
+                  </ul>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
-        {/* <img draggable="false" src={Logo} alt="" className='absolute top-5 left-10 w-12 h-12' /> */}
       </nav>
 
-      <main ref={homeRef} className="h-screen w-full relative overflow-hidden bg-white flex justify-center items-center">
+      <main
+        ref={homeRef}
+        className="md:h-screen h-[50vh] w-full relative overflow-hidden bg-white flex justify-center items-center"
+      >
         {/* Background Image in center */}
         <img
-          className="absolute z-0 w-[40vw] h-[40vw] object-contain"
+          className="absolute z-0 md:w-[40vw] md:h-[40vw]  h-full"
           src={HeroBg}
           alt="Center Image"
         />
 
-        {/* Motion blending circle on top */}
-        <motion.div
-          style={{ mixBlendMode: "difference" }}
-          animate={{ x: position.x - 75, y: position.y - 150, scale }}
-          transition={{
-            type: "spring",
-            stiffness: 300,
-            damping: 50,
-            mass: 0.5,
-          }}
-          className="w-[150px] h-[150px] rounded-full bg-white absolute top-0 left-0 z-20 pointer-events-none"
-        />
-
         <div
-          onMouseEnter={() => setScale(2)}
-          onMouseLeave={() => setScale(1)}
-          className="text-[6rem] text-black z-10 relative text-center hover:cursor-default"
+          className="md:text-[6rem] text-black z-10 relative text-center hover:cursor-default"
         >
-          <p className="audiowide-regular p-0 -mb-12 text-[4.5rem]">
+          <p className="audiowide-regular p-0 md:-mb-12 md:text-[4.5rem] text-3xl">
             Anshul Gadia
           </p>
           <h1
-            className="p-0 text-[7rem] -mb-10"
+            className="p-0 md:text-[7rem] md:-mb-10 text-3xl leading-snug text-center"
             style={{ fontFamily: "Mechsuit" }}
           >
             Full Stack
           </h1>
           <h2
-            className="text-transparent p-0 text-[7rem]"
+            className="text-transparent p-0 md:text-[7rem] text-5xl"
             style={{ fontFamily: "hypik", WebkitTextStroke: "1px black" }}
           >
             Developer
@@ -220,74 +328,74 @@ const Hero = () => {
       </main>
 
       <section ref={numbersRef} className="w-full py-10">
-        <div className="w-[75%] flex flex-row flex-wrap justify-between items-center mx-auto">
-          <div className="flex flex-col justify-center items-center">
+        <div className="w-[75%] flex flex-row flex-wrap justify-between items-center mx-auto space-y-5 md:space-y-0">
+          <div className="flex flex-col justify-center items-center md:mx-0 mx-auto">
             <p
               style={{
                 fontFamily: "Big Shoulders , sans-serif",
                 fontVariantNumeric: "tabular-nums",
               }}
-              className="text-[7.5rem] font-bold w-[4ch]"
+              className="md:text-[7.5rem] text-[5rem] text-center font-bold w-[4ch]"
             >
-              {isInView ? <CountUp end={5} duration={3} suffix="+" /> : null}
+              {isInView ? <CountUp start={0} end={5} duration={3} suffix="+" prefix="0" /> : null}
             </p>
             <p
               style={{ fontFamily: "Lexend, sans-serif" }}
-              className="text-[#5C5C5C] -mt-5 font-semibold text-[1.125rem]"
+              className="text-[#5C5C5C] -mt-5 font-semibold text-[1.5rem]"
             >
               Projects Completed
             </p>
           </div>
 
-          <div className="flex flex-col justify-center items-center">
+          <div className="flex flex-col justify-center items-center md:mx-0 mx-auto">
             <p
               style={{
                 fontFamily: "Big Shoulders , sans-serif",
                 fontVariantNumeric: "tabular-nums",
               }}
-              className="text-[7.5rem] font-bold w-[4ch]"
+              className="md:text-[7.5rem] text-[5rem] text-center font-bold w-[4ch]"
             >
               {isInView ? <CountUp end={10} duration={3} suffix="+" /> : null}
             </p>
             <p
               style={{ fontFamily: "Lexend, sans-serif" }}
-              className="text-[#5C5C5C] -mt-5 font-semibold text-[1.125rem]"
+              className="text-[#5C5C5C] -mt-5 font-semibold text-[1.5rem]"
             >
               Skills Acquired
             </p>
           </div>
 
-          <div className="flex flex-col justify-center items-center">
+          <div className="flex flex-col justify-center items-center md:mx-0 mx-auto">
             <p
               style={{
                 fontFamily: "Big Shoulders , sans-serif",
                 fontVariantNumeric: "tabular-nums",
               }}
-              className="text-[7.5rem] font-bold w-[4ch]"
+              className="md:text-[7.5rem] text-[5rem] text-center font-bold w-[4ch]"
             >
-              {isInView ? <CountUp end={3} duration={3} suffix="+" /> : null}
+              {isInView ? <CountUp end={3} duration={3} suffix="+" prefix="0"/> : null}
             </p>
             <p
               style={{ fontFamily: "Lexend, sans-serif" }}
-              className="text-[#5C5C5C] -mt-5 font-semibold text-[1.125rem]"
+              className="text-[#5C5C5C] -mt-5 font-semibold text-[1.5rem] text-center"
             >
               Competitions Participated
             </p>
           </div>
 
-          <div className="flex flex-col justify-center items-center">
+          <div className="flex flex-col justify-center items-center md:mx-0 mx-auto">
             <p
               style={{
                 fontFamily: "Big Shoulders , sans-serif",
                 fontVariantNumeric: "tabular-nums",
               }}
-              className="text-[7.5rem] font-bold w-[4ch]"
+              className="md:text-[7.5rem] text-[5rem] text-center font-bold w-[4ch]"
             >
               {isInView ? <CountUp end={500} duration={3} suffix="+" /> : null}
             </p>
             <p
               style={{ fontFamily: "Lexend, sans-serif" }}
-              className="text-[#5C5C5C] -mt-5 font-semibold text-[1.125rem]"
+              className="text-[#5C5C5C] -mt-5 font-semibold text-[1.5rem]"
             >
               Hours of Learning
             </p>
@@ -296,18 +404,13 @@ const Hero = () => {
       </section>
 
       {/* about me */}
-      <section className="w-full flex flex-row justify-center items-center p-20">
-        <div className="w-1/2 pt-20">
-          <motion.img
-            initial={{ scale: 0, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 1 }}
-            src={MyImg}
-            alt="MyImage"
-            className="w-[85%]"
-          />
+      <section className="w-full flex md:flex-row flex-col justify-center items-center md:p-20 p-10">
+        
+        <div className="w-1/2 pt-20 md:block hidden">
+          <img src={MyImg} alt="MyImage" className="w-[85%]" />
         </div>
-        <div className="flex flex-col justify-center items-center w-1/2">
+        
+        <div className="flex flex-col justify-center items-center md:w-1/2 w-full">
           <motion.h2
             style={{ fontFamily: "Big Shoulders , sans-serif" }}
             ref={aboutRef}
@@ -316,22 +419,16 @@ const Hero = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="text-[7rem] font-bold self-start tracking-wide"
+            className="md:text-[7rem] font-bold self-start tracking-wide"
           >
-            <TrueFocus
-              sentence="About Me"
-              blurAmount={7}
-              borderColor="#5C5C5C"
-              pauseBetweenAnimations={2}
-              animationDuration={1}
-            />
+            About Me
           </motion.h2>
-          <motion.p
-            custom={1}
-            variants={textVariant}
+          <motion.div
+            variants={textVariant2}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: false }}
+            viewport={{ once: true }}>       
+             <p
             style={{ fontFamily: "Lexend, sans-serif" }}
             className="text-[#969696] text-xl tracking-tight mb-5"
           >
@@ -343,13 +440,8 @@ const Hero = () => {
             Solutions had me designing a multilingual EduTech platform that
             transformed user experience, making learning more accessible and
             engaging.
-          </motion.p>
-          <motion.p
-            custom={1}
-            variants={textVariant}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false }}
+          </p>
+          <p
             style={{ fontFamily: "Lexend, sans-serif" }}
             className="text-[#969696] text-xl tracking-tight mb-16"
           >
@@ -359,7 +451,9 @@ const Hero = () => {
             and adapt to user needs. With a strong foundation in JavaScript,
             Python, and a toolkit full of modern tools, I’m always ready to take
             on the next big challenge and make a lasting impact.
-          </motion.p>
+          </p>
+          </motion.div>
+
           <motion.button
             onClick={() => scrollToSection(contactRef)}
             style={{ fontFamily: "Lexend, sans-serif" }}
@@ -380,76 +474,42 @@ const Hero = () => {
       <span ref={projectRef} />
       <MyProjects />
 
-      {/* <section className='relative bg-red-50 h-[120vh] w-full overflow-hidden'>
-        <div className="absolute top-[0%] -left-[20%] w-[150%] rotate-[5deg] translate-y-[200%]">
-          <Marquee/>
-        </div>
-
-        <div className="absolute top-[30%] -left-[20%] w-[150%] rotate-[5deg] translate-y-[200%]">
-          <Marquee/>
-        </div>
-
-        <div className="absolute top-[60%] -left-[20%] w-[150%] rotate-[-5deg] translate-y-[200%]">
-          <Marquee/>
-        </div>
-
-        <div className="absolute top-[20%] -left-[20%] w-[150%] rotate-[-15deg] translate-y-[200%]">
-          <Marquee/>
-        </div>
-
-        <div className='w-full h-full flex flex-col justify-center items-center'> 
-          <h1 style={{fontFamily : 'Big Shoulders , sans-serif'}} className="text-[8rem] font-extrabold uppercase tracking-wider outline-text text-center">
-            THINGS I'M WORKING ON
-          </h1>
-
-          <h1 style={{fontFamily : 'Big Shoulders , sans-serif'}} className="text-[8rem] font-extrabold uppercase tracking-wider text-center text-[#5C5C5C]">
-            THINGS I'M WORKING ON
-          </h1>
-
-          <h1 style={{fontFamily : 'Big Shoulders , sans-serif'}} className="text-[8rem] font-extrabold uppercase tracking-wider outline-text text-center">
-            THINGS I'M WORKING ON
-          </h1>
-        </div>
-
-
-
-        </section> */}
-
-      <section className="relative h-[120vh] w-full overflow-hidden">
-        <div className="absolute top-[0%] -left-[20%] w-[150%] rotate-[5deg] translate-y-[200%]">
+      
+      <section className="relative md:h-[120vh] h-[80vh] w-full overflow-hidden">
+        <div className="absolute z-10  md:top-[0%] -top-[15%] -left-[20%] w-[150%] rotate-[5deg] translate-y-[200%]">
           <Marquee reverse={reverse} />
         </div>
 
-        <div className="absolute top-[30%] -left-[20%] w-[150%] rotate-[5deg] translate-y-[200%]">
+        <div className="absolute z-10 md:top-[30%] top-[15%] -left-[20%] w-[150%] md:rotate-[5deg] rotate-[20deg] translate-y-[200%]">
           <Marquee reverse={reverse} />
         </div>
 
-        <div className="absolute top-[60%] -left-[20%] w-[150%] rotate-[-5deg] translate-y-[200%]">
+        <div className="absolute z-10 top-[60%] -left-[20%] w-[150%] rotate-[-5deg] translate-y-[200%]">
           <Marquee reverse={reverse} />
         </div>
 
-        <div className="absolute top-[20%] -left-[20%] w-[150%] rotate-[-15deg] translate-y-[200%]">
+        <div className="absolute z-10 top-[20%] -left-[20%] w-[150%] rotate-[-15deg] translate-y-[200%]">
           <Marquee reverse={reverse} />
         </div>
 
         <div className="w-full h-full flex flex-col justify-center items-center">
           <h1
             style={{ fontFamily: "Big Shoulders, sans-serif" }}
-            className="text-[8rem] font-extrabold uppercase tracking-wider outline-text text-center"
+            className=" md:shadow-none md:text-[8rem] text-[5rem] z-10 md:z-0 font-extrabold uppercase tracking-wider outline-text text-center"
           >
             THINGS I'M WORKING ON
           </h1>
 
           <h1
             style={{ fontFamily: "Big Shoulders, sans-serif" }}
-            className="text-[8rem] font-extrabold uppercase tracking-wider text-center text-[#5C5C5C]"
+            className="md:block hidden md:text-[8rem] text-[5rem] font-extrabold uppercase tracking-wider text-center text-[#5C5C5C]"
           >
             THINGS I'M WORKING ON
           </h1>
 
           <h1
             style={{ fontFamily: "Big Shoulders, sans-serif" }}
-            className="text-[8rem] font-extrabold uppercase tracking-wider outline-text text-center"
+            className="md:block hidden text-[8rem] font-extrabold uppercase tracking-wider outline-text text-center"
           >
             THINGS I'M WORKING ON
           </h1>
@@ -457,17 +517,17 @@ const Hero = () => {
       </section>
 
       {/* skills section */}
-      <section className="w-full flex flex-col justify-center items-center p-16">
+      <section className="w-full flex flex-col justify-center items-center md:p-16 bg-blue-50">
         <h1
           ref={skillsRef}
           style={{ fontFamily: "Big Shoulders, sans-serif" }}
-          className="text-[7rem] font-extrabold uppercase text-center"
+          className="md:text-[7rem] text-[3rem] md:px-0 px-0 md:pt-0 pt-10 font-extrabold uppercase text-center"
         >
-          Skills / Technologies I Use
+          Skills & Technologies I Use
         </h1>
 
         {/* row1 */}
-        <div className="flex flex-col justify-center items-center w-full mt-10 p-5 mb-5">
+        <div className="flex flex-col justify-center items-center w-full mt-10 md:p-5 mb-5">
           <div className="flex flex-row justify-center items-center flex-wrap gap-14">
             <MagneticEffect>
               <div className="flex flex-row justify-center items-center gap-2 cursor-default">
@@ -706,24 +766,40 @@ const Hero = () => {
         <div className="container mx-auto px-4 flex flex-col items-center space-y-6">
           {/* Top Navigation Links */}
           <nav className="flex flex-wrap justify-center gap-20 text-sm font-light">
-            <a onClick={() => scrollToSection(homeRef)} >Home</a>
-            <a onClick={() => scrollToSection(aboutRef)} >About</a>
+            <a onClick={() => scrollToSection(homeRef)}>Home</a>
+            <a onClick={() => scrollToSection(aboutRef)}>About</a>
             <a onClick={() => scrollToSection(servicesRef)}>Services</a>
             <a onClick={() => scrollToSection(projectRef)}>Projects</a>
             <a onClick={() => scrollToSection(skillsRef)}>Skills</a>
           </nav>
 
           <div className="flex space-x-4 flex-wrap">
-            <a href="https://www.instagram.com/jain___anshulll?igsh=MXB1cXI0MTZtMDZtNQ%3D%3D&utm_source=qr" target="_blank" className="bg-white/10 hover:bg-white/20 p-2 rounded-md hover:cursor-pointer">
+            <a
+              href="https://www.instagram.com/jain___anshulll?igsh=MXB1cXI0MTZtMDZtNQ%3D%3D&utm_source=qr"
+              target="_blank"
+              className="bg-white/10 hover:bg-white/20 p-2 rounded-md hover:cursor-pointer"
+            >
               <FaInstagram className="text-2xl" />
             </a>
-            <a href="http://linkedin.com/in/anshulgadia04" target="_blank" className="bg-white/10 hover:bg-white/20 p-2 rounded-md hover:cursor-pointer">
+            <a
+              href="http://linkedin.com/in/anshulgadia04"
+              target="_blank"
+              className="bg-white/10 hover:bg-white/20 p-2 rounded-md hover:cursor-pointer"
+            >
               <FaLinkedinIn className="text-2xl" />
             </a>
-            <a href="https://github.com/anshulgadia04" target="_blank" className="bg-white/10 hover:bg-white/20 p-2 rounded-md hover:cursor-pointer">
+            <a
+              href="https://github.com/anshulgadia04"
+              target="_blank"
+              className="bg-white/10 hover:bg-white/20 p-2 rounded-md hover:cursor-pointer"
+            >
               <FaGithub className="text-2xl" />
             </a>
-            <a href="https://leetcode.com/u/anshulgadia04/" target="_blank" className="bg-white/10 hover:bg-white/20 p-2 rounded-md hover:cursor-pointer">
+            <a
+              href="https://leetcode.com/u/anshulgadia04/"
+              target="_blank"
+              className="bg-white/10 hover:bg-white/20 p-2 rounded-md hover:cursor-pointer"
+            >
               <SiLeetcode className="text-2xl" />
             </a>
           </div>

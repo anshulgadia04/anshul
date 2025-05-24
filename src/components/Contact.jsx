@@ -66,7 +66,7 @@ const Contact = () => {
         // console.log("Form Data Submitted: ", formData);
         sendEmail(formData); 
         setSubmitted(true);
-        alert("Form submitted successfully!");
+        // alert("Form submitted successfully!");
         setFormData({
           name: "",
           email: "",
@@ -97,11 +97,11 @@ const Contact = () => {
           )
           .then(
             (result) => {
-              console.log('Message Sent', result.text);
+              // console.log('Message Sent', result.text);
               alert('Message sent successfully!');
             },
             (error) => {
-              console.error('Error:', error.text);
+              // console.error('Error:', error.text);
               alert('Message failed to send.');
             }
           );

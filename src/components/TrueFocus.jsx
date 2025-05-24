@@ -57,7 +57,7 @@ const TrueFocus = ({
 
   return (
     <div
-      className="relative flex gap-10 justify-center items-center flex-wrap mb-10"
+      className="relative flex flex-row md:gap-10 gap-3 justify-center items-center flex-wrap mb-10 mx-auto"
 
       ref={containerRef}
     >
@@ -67,7 +67,7 @@ const TrueFocus = ({
           <span
             key={index}
             ref={(el) => (wordRefs.current[index] = el)}
-            className="relative text-[7rem] font-bold self-start tracking-wide text-black cursor-pointer"
+            className="relative md:text-[7rem] text-[4rem] font-bold md:self-start self-center tracking-wide text-black cursor-pointer"
             style={{
               filter: manualMode
                 ? isActive

@@ -9,13 +9,13 @@ const AccordionItem = ({ title, content }) => {
       <button
         onClick={() => setIsOpen(!isOpen)}
         style={{fontFamily : 'Big Shoulders , sans-serif'}}
-        className="w-full flex justify-between items-center py-4 text-left text-[4rem] font-light focus:outline-none"
+        className="w-full flex justify-between items-center md:py-4 py-0 text-left md:text-[4rem] text-[2rem] font-light focus:outline-none"
       >
         {title}
         <span className={`text-gray-400 transform transition-transform ${isOpen ? 'rotate-180' : ''}`}>
           {/* Using an HTML entity for arrow */}
           <svg
-            className="w-8 h-8"
+            className="md:w-8 md:h-8 w-6 h-6 lg:w-12 lg:h-12"
             fill="none"
             stroke='#969696'
             strokeWidth="3"
@@ -28,7 +28,7 @@ const AccordionItem = ({ title, content }) => {
       </button>
 
       {isOpen && (
-        <div style={{ fontFamily: 'Lexend, sans-serif' }} className="p-4 text-gray-600 text-xl">
+        <div style={{ fontFamily: 'Lexend, sans-serif' }} className="p-4 text-gray-600 md:text-xl text-sm">
           {content}
         </div>
       )}
@@ -39,9 +39,9 @@ const AccordionItem = ({ title, content }) => {
 const WhatIOffer = ({ services }) => {
   return (
     <section className="w-full mx-auto p-8">
-      <h2 style={{fontFamily : 'Big Shoulders , sans-serif'}} className="text-[7rem] font-bold text-center mb-8">What I Offer You?</h2>
+      <h2 style={{fontFamily : 'Big Shoulders , sans-serif'}} className="md:text-[7rem] text-[4rem] font-bold text-center mb-3 md:mb-8">What I Offer You?</h2>
 
-      <div className='w-3/4 mx-auto'>
+      <div className='md:w-3/4 w-full mx-auto'>
       {services.map((service, index) => (
         <TileHoverEffect key={index}>
           <AccordionItem
